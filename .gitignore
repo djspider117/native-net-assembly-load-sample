@@ -399,4 +399,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/src/host/MicroEngine/out/build
+/src/host/MicroEngine/out
