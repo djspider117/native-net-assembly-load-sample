@@ -5,7 +5,6 @@ namespace MicroEngineSDK;
 
 internal class EngineAPI
 {
-
     [UnmanagedCallersOnly(EntryPoint = nameof(Initialize))]
     internal static void Initialize(IntPtr ga_cstr, int len)
     {
