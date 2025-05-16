@@ -1,12 +1,13 @@
 #pragma once
 
+#include "Common.h"
 #include "Scene.h"
 #include <memory>
 #include "FrameBuffer.h"
 
 namespace MicroEngine
 {
-	class ConsoleRenderer
+	class ENGINE_API ConsoleRenderer
 	{
 	public:
 		ConsoleRenderer(char w, char h);

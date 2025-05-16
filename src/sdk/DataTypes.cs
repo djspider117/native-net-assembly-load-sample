@@ -15,7 +15,7 @@ public struct Vector2Int
 }
 
 [StructLayout(LayoutKind.Sequential)]
-struct ConsoleTransform
+struct ConsoleTransformData
 {
     public Vector2Int Position;
     public Vector2Int Size;

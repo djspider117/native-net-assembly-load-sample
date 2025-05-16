@@ -12,13 +12,6 @@ namespace MicroEngine
 
 	}
 
-	void Scene::Update()
-	{
-		for (auto go : _gameObjects)
-		{
-			go->Update();
-		}
-	}
 	GameObject* Scene::CreateGameObject(const std::string& name)
 	{
 		auto rv = new GameObject(name);

@@ -11,7 +11,7 @@
 
 namespace MicroEngine
 {
-	ConsoleRenderer::ConsoleRenderer(char w, char h) 
+	ConsoleRenderer::ConsoleRenderer(char w, char h)
 	{
 		_frameBuffer = std::make_unique<FrameBuffer>(w, h);
 #ifdef _WIN32
@@ -29,7 +29,18 @@ namespace MicroEngine
 	{
 		for (auto& go : scene->GetGameObjects())
 		{
-			// TODO: update renderer components
+			const auto& ri = go->GetRenderInfo();
+			if (!ri.Visible)
+				continue;
+
+			const auto& t = go->GetTransform();
+			for (size_t y = 0; y < t.Size.Y; y++)
+			{
+				for (size_t x = 0; x < t.Size.X; x++)
+				{
+					_frameBuffer->SetPixel(x, y, ri.Symbol);
+				}
+			}
 		}
 	}
 	void ConsoleRenderer::Present()

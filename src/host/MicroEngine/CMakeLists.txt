@@ -1,7 +1,4 @@
-﻿# CMakeList.txt : CMake project for MicroEngine, include source and define
-# project specific logic here.
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required (VERSION 3.8)
 
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
@@ -17,7 +14,7 @@ else()
 endif()
 
 
-project ("MicroEngine")
+project(MicroEngine)
 
 # Add header include
 include_directories("${DOTNET_HOST_DIR}")
@@ -28,12 +25,12 @@ if(WIN32)
 elseif(UNIX)
     set(DOTNET_LIB "${DOTNET_HOST_DIR}/libnethost.so")
 endif()
-# Add source to this project's executable.
-add_executable (MicroEngine "main.cpp"  "Application.h" "Application.cpp" "Engine.h" "Engine.cpp" "ConsoleRenderer.h" "NetRuntimeHost.h" "EngineObjects.h" "InputSystem.h" "InputSystem.cpp" "Scene.h" "ConsoleRenderer.cpp" "NetRuntimeHost.cpp" "Scene.cpp" "EngineAPI.h" "EngineAPI.cpp" "FrameBuffer.h" "FrameBuffer.cpp" "GameObject.h" "Component.h" "GameObject.cpp")
-target_link_libraries(MicroEngine PRIVATE "${DOTNET_LIB}")
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET MicroEngine PROPERTY CXX_STANDARD 20)
+if(WIN32)
+    set(DOTNET_DLL "${DOTNET_HOST_DIR}/nethost.dll")
+elseif(UNIX)
+    set(DOTNET_DLL "${DOTNET_HOST_DIR}/libnethost.so")
 endif()
 
-# TODO: Add tests and install targets if needed.
+add_subdirectory(Engine)
+add_subdirectory(App)

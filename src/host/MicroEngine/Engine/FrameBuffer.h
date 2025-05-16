@@ -1,12 +1,13 @@
 #pragma once
 #include <stdlib.h>
 #include <cstring>
+#include "Common.h"
 
 constexpr auto EMPTY_PIXEL = ' ';
 
 namespace MicroEngine
 {
-	class FrameBuffer final
+	class ENGINE_API FrameBuffer final
 	{
 	public:
 		FrameBuffer(char w, char h);

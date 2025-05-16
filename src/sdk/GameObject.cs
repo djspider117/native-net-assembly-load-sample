@@ -1,18 +1,25 @@
-﻿namespace MicroEngineSDK;
+﻿using System.Runtime.InteropServices;
+
+namespace MicroEngineSDK;
 
 public class GameObject : NativeObjectWrapper
 {
-    public string Name => GameObjectAPINative.GetGameObjectName(NativeObject);
+    public string Name => GetGameObjectName(NativeObject);
+    public RenderInfo RenderInfo { get; private set; }
+    public ConsoleTransform Transform {get; private set; }
 
     public GameObject(string name)
-        : base(SceneAPINative.CreateGameObjectForCurrentScene(name))
+        : base(CreateGameObjectForCurrentScene(name))
     {
-        // TODO: request a new gameobject ptr from the engine
+        RenderInfo = new(GetRenderInfo(NativeObject));
+        Transform = new(GetTransform(NativeObject));
     }
 
     public GameObject(string name, IntPtr ptr)
         : base(ptr)
     {
+        RenderInfo = new(GetRenderInfo(NativeObject));
+        Transform = new(GetTransform(NativeObject));
     }
 
     public T? GetComponent<T>() where T : Component
@@ -26,65 +33,20 @@ public class GameObject : NativeObjectWrapper
         // TODO
         return null;
     }
-}
 
-class RenderInfo : NativeObjectWrapper
-{
-    public byte ColorPalletIndex
-    {
-        get
-        {
-            unsafe
-            {
-                return (*(RenderInfoData*)NativeObject).ColorPalleteIndex;
-            }
-        }
-        set
-        {
-            unsafe
-            {
-                (*(RenderInfoData*)NativeObject).ColorPalleteIndex = value;
-            }
-        }
-    }
+    #region Native API
 
-    public byte Symbol
-    {
-        get
-        {
-            unsafe
-            {
-                return (*(RenderInfoData*)NativeObject).Symbol;
-            }
-        }
-        set
-        {
-            unsafe
-            {
-                (*(RenderInfoData*)NativeObject).Symbol = value;
-            }
-        }
-    }
+    [DllImport(EngineAPINative.ENGINE_PATH)]
+    internal static extern IntPtr GetTransform(IntPtr gameObject);
 
-    public bool Visible
-    {
-        get
-        {
-            unsafe
-            {
-                return (*(RenderInfoData*)NativeObject).Visible;
-            }
-        }
-        set
-        {
-            unsafe
-            {
-                (*(RenderInfoData*)NativeObject).Visible = value;
-            }
-        }
-    }
+    [DllImport(EngineAPINative.ENGINE_PATH)]
+    internal static extern IntPtr GetRenderInfo(IntPtr gameObject);
 
-    internal RenderInfo(nint ptr) : base(ptr)
-    {
-    }
+    [DllImport(EngineAPINative.ENGINE_PATH)]
+    internal static extern string GetGameObjectName(IntPtr gameObject);
+
+    [DllImport(EngineAPINative.ENGINE_PATH)]
+    internal static extern IntPtr CreateGameObjectForCurrentScene(string name);
+
+    #endregion
 }

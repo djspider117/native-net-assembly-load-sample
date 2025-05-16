@@ -1,13 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<OutputPath>..\host\MicroEngine\out\build</OutputPath>
+		<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\sdk\MicroEngineSDK.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\sdk\MicroEngineSDK.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -6,7 +6,11 @@
 
 #include <iostream>
 #include <assert.h>
+#include <filesystem>
+
 #include "NetRuntimeHost.h"
+
+using std::filesystem::path;
 
 namespace MicroEngine
 {
@@ -32,14 +36,15 @@ namespace MicroEngine
 #endif
 	}
 
-
 	bool NetRuntimeHost::Load(std::wstring assemblyPath)
 	{
 		if (!LoadHostFXR())
 			return false;
 
+		path configPath(L"..\\..\\net9.0\\MicroEngineSDK.runtimeconfig.json");
+
 		// temp hardcoded
-		auto loadDelegate = GetLoadAssemblyDelegate(L"MicroEngineSDK.runtimeconfig.json");
+		auto loadDelegate = GetLoadAssemblyDelegate(configPath.c_str());
 		
 		auto hr = loadDelegate(
 			assemblyPath.c_str(), 
@@ -61,7 +66,9 @@ namespace MicroEngine
 
 		assert(hr == 0 && _engineApi_Tick != nullptr);
 
-		_engineApi_Init();
+		path gameDll = configPath.parent_path() / "Game.dll";
+		std::wstring pathString = gameDll.generic_wstring();
+		_engineApi_Init((void*)(pathString.c_str()), pathString.length());
 	}
 
 	bool NetRuntimeHost::LoadHostFXR()

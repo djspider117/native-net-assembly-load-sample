@@ -7,16 +7,15 @@ public class Consolio : IGameEntry
     public void Run()
     {
         var demoScene = new Scene("Demo Scene", 0);
+        Engine.SetActiveScene(demoScene);
+
+        var map = new GameObject("Map");
+        map.AddComponent<MapComponent>();
 
         var player = new GameObject("Player");
-        
-    }
-}
+        player.AddComponent<PlayerControllerComponent>();
 
-public class PlayerComponent : Component
-{
-    public override void Update()
-    {
-        
+        demoScene.AddGameObject(map);
+        demoScene.AddGameObject(player);
     }
 }

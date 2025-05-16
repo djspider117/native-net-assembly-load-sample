@@ -2,8 +2,6 @@
 
 namespace MicroEngine
 {
-	extern std::unique_ptr<Engine> g_Engine;
-
 	Application::Application(int argc, char* argv[])
 	{
 		_cmdLineArgs.resize(argc);

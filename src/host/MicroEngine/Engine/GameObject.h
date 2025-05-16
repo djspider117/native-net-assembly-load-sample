@@ -36,17 +36,18 @@ namespace MicroEngine
 			return nullptr;
 		}
 
-		virtual void Update() {}
-
 		inline const std::string& GetName() const { return _name; }
 		inline ConsoleTransform* GetTransformAsPtr() const { return (ConsoleTransform*)&_transform; }
 		inline RenderInfo* GetRenderInfoAsPtr() const { return (RenderInfo*)&_renderInfo; }
+
+		inline const RenderInfo& GetRenderInfo() const { return _renderInfo; }
+		inline const ConsoleTransform& GetTransform() const { return _transform; }
 
 	private:
 		std::string _name;
 		std::vector<Component*> _components;
 
-		ConsoleTransform _transform;
-		RenderInfo _renderInfo;
+		ConsoleTransform _transform{};
+		RenderInfo _renderInfo{};
 	};
 }

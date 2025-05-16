@@ -12,6 +12,7 @@ namespace MicroEngine
 	typedef hostfxr_close_fn HostFxrCloseDelegate;
 	typedef load_assembly_and_get_function_pointer_fn LoadAssemblyAndGetFunctionPointerDelegate;
 	typedef void (CORECLR_DELEGATE_CALLTYPE* ManagedDelegate)();
+	typedef void (CORECLR_DELEGATE_CALLTYPE* ManagedInitDelegate)(void*, int);
 
 	class NetRuntimeHost
 	{
@@ -22,7 +23,7 @@ namespace MicroEngine
 
 		bool Load(std::wstring assemblyPath);
 
-		inline ManagedDelegate GetEngineTickDelegate() const { return _engineApi_Tick; }
+		inline const ManagedDelegate& GetEngineTickDelegate() const { return _engineApi_Tick; }
 
 	private:
 		bool LoadHostFXR();
@@ -32,7 +33,7 @@ namespace MicroEngine
 		HostFxrGetRuntimeDelegate _getDelegate = nullptr;
 		HostFxrCloseDelegate _closeFxr = nullptr;
 
-		ManagedDelegate _engineApi_Init = nullptr;
+		ManagedInitDelegate _engineApi_Init = nullptr;
 		ManagedDelegate _engineApi_Tick = nullptr;
 	};
 }

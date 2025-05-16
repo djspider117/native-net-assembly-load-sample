@@ -10,7 +10,6 @@ namespace MicroEngine
 	public:
 		Scene(std::string name, int id);
 
-		void Update();
 		GameObject* CreateGameObject(const std::string& name);
 		void AddGameObject(GameObject* go);
 

@@ -2,7 +2,9 @@
 
 #include <string>
 #include <memory>
+#include <chrono>
 
+#include "Common.h"
 #include "ConsoleRenderer.h"
 #include "NetRuntimeHost.h"
 #include "InputSystem.h"
@@ -10,7 +12,7 @@
 
 namespace MicroEngine
 {
-	class Engine
+	class ENGINE_API Engine
 	{
 	public:
 		Engine(std::wstring gameAssemblyPath);
@@ -21,20 +23,30 @@ namespace MicroEngine
 		void Run();
 
 		inline void SetActiveScene(Scene* scene) { _sceneToSwitch = scene; }
-		inline Scene* GetActiveScene() const { return _activeScene; }
+		inline InputSystem* GetInputSystem() const { return (InputSystem*)&_inputSys; }
+		inline Scene* GetActiveScene() const 
+		{
+			if (_activeScene == nullptr && _sceneToSwitch != nullptr)
+				return _sceneToSwitch;
 
+			return _activeScene;
+		}
+
+		int ObjectId = 0;
 	private:
 		std::wstring _gameAssemblyPath;
 
 		Scene* _sceneToSwitch;
 		Scene* _activeScene;
+
 		InputSystem _inputSys;
 		std::unique_ptr<ConsoleRenderer> _renderer;
 		NetRuntimeHost _runtimeHost;
+		static std::atomic<int> s_nextId;
 	};
 
 	void PostEngineShutdown();
 
-	extern std::unique_ptr<Engine> g_Engine;
-	extern std::vector<Scene*> g_SceneRepository;
+	extern ENGINE_API std::unique_ptr<Engine> g_Engine;
+	extern ENGINE_API std::vector<Scene*> g_SceneRepository;
 }

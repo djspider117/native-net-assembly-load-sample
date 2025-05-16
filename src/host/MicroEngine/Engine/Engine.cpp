@@ -9,8 +9,10 @@ namespace EngineConfig
 
 namespace MicroEngine
 {
-	std::unique_ptr<Engine> g_Engine = std::make_unique<Engine>(L"MicroEngineSDK.dll");
+	ENGINE_API std::vector<Scene*> g_SceneRepository;
+	ENGINE_API std::unique_ptr<Engine> g_Engine = std::make_unique<Engine>(L"..\\..\\net9.0\\MicroEngineSDK.dll");
 
+	std::atomic<int> Engine::s_nextId{ 1 };
 	Engine::Engine(std::wstring gameAssemblyPath) :
 		_gameAssemblyPath(gameAssemblyPath),
 		_inputSys(),
@@ -18,7 +20,7 @@ namespace MicroEngine
 		_sceneToSwitch(nullptr),
 		_renderer(std::make_unique<ConsoleRenderer>(8, 8))
 	{
-
+		ObjectId = s_nextId++;
 	}
 	void Engine::LoadNetRuntime()
 	{
@@ -40,7 +42,6 @@ namespace MicroEngine
 			if (_activeScene != nullptr)
 			{
 				_runtimeHost.GetEngineTickDelegate()();
-				_activeScene->Update();
 				_renderer->RenderScene(_activeScene);
 			}
 
