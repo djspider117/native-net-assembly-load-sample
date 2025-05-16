@@ -17,7 +17,7 @@ namespace MicroEngine
 		_inputSys(),
 		_activeScene(nullptr),
 		_sceneToSwitch(nullptr),
-		_renderer(std::make_unique<ConsoleRenderer>(20, 10))
+		_renderer(std::make_unique<ConsoleRenderer>(40, 20))
 	{
 	}
 	void Engine::LoadNetRuntime()

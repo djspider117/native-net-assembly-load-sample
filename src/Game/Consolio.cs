@@ -33,5 +33,15 @@ public class Consolio : IGameEntry
         demoScene.AddGameObject(tw);
         demoScene.AddGameObject(bw);
         demoScene.AddGameObject(player);
+
+        var howToPlay = "Use arrow keys";
+        for (int i = 0; i < howToPlay.Length; i++)
+        {
+            var go = new GameObject("Letter");
+            go.RenderInfo.Visible = true;
+            go.RenderInfo.Symbol = (byte)howToPlay[i];
+            go.Transform.Position = new Vector2Int { X = i, Y = 11 };
+            demoScene.AddGameObject(go);
+        }
     }
 }
