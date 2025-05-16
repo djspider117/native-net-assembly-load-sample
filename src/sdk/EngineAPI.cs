@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace MicroEngineSDK;
 
@@ -9,12 +10,12 @@ internal class EngineAPI
     internal static void Initialize(IntPtr ga_cstr, int len)
     {
         var gameDll = Marshal.PtrToStringAuto(ga_cstr, len)!;
-        Console.WriteLine("Initializing EngineAPI");
-        Console.WriteLine($"Loading {gameDll}");
+        Debug.WriteLine("Initializing EngineAPI");
+        Debug.WriteLine($"Loading {gameDll}");
 
         ComponentRegistry.RegisterFromAssembly(gameDll);
 
-        Console.WriteLine("Starting game...");
+        Debug.WriteLine("Starting game...");
         ComponentRegistry.GameEntry?.Run();
     }
 

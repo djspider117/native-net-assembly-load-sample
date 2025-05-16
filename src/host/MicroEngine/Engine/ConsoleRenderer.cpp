@@ -38,7 +38,7 @@ namespace MicroEngine
 			{
 				for (size_t x = 0; x < t.Size.X; x++)
 				{
-					_frameBuffer->SetPixel(x, y, ri.Symbol);
+					_frameBuffer->SetPixel(x + t.Position.X, y + t.Position.Y, ri.Symbol);
 				}
 			}
 		}

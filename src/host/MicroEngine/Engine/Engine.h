@@ -32,7 +32,6 @@ namespace MicroEngine
 			return _activeScene;
 		}
 
-		int ObjectId = 0;
 	private:
 		std::wstring _gameAssemblyPath;
 
@@ -42,7 +41,6 @@ namespace MicroEngine
 		InputSystem _inputSys;
 		std::unique_ptr<ConsoleRenderer> _renderer;
 		NetRuntimeHost _runtimeHost;
-		static std::atomic<int> s_nextId;
 	};
 
 	void PostEngineShutdown();

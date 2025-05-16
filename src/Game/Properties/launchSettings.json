@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Game": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    },
+    "App.exe": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Work\\native-net-assembly-load-sample\\src\\host\\MicroEngine\\out\\build\\win-x64-debug\\App\\App.exe",
+      "workingDirectory": "C:\\Work\\native-net-assembly-load-sample\\src\\host\\MicroEngine\\out\\build\\win-x64-debug\\App\\",
+      "nativeDebugging": true
+    }
+  }
+}

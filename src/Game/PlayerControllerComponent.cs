@@ -8,12 +8,13 @@ public class PlayerControllerComponent : Component
     {
         GameObject.RenderInfo.Visible = true;
         GameObject.RenderInfo.ColorPalletIndex = 1;
-        GameObject.RenderInfo.Symbol = (byte)'#';
+        GameObject.RenderInfo.Symbol = (byte)'O';
+        GameObject.Transform.Position = new Vector2Int { X = 10, Y = 5 };
     }
 
     public override void Update()
     {
-        var mx = 8;
+        var mx = 18;
         var my = 8;
         var t = GameObject.Transform;
         var x = t.Position.X;
@@ -31,11 +32,11 @@ public class PlayerControllerComponent : Component
         if (Input.IsKeyDown(VirtualKey.ArrowDown))
             ++y;
 
-        if (x < 0)
-            x = 0;
+        if (x < 1)
+            x = 1;
 
-        if (y < 0)
-            y = 0;
+        if (y < 1)
+            y = 1;
 
         if (x > mx)
             x = mx;

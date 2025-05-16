@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 
 namespace MicroEngineSDK;
 
@@ -24,7 +25,7 @@ public static class ComponentRegistry
 
         foreach (var type in types)
         {
-            Console.WriteLine($"Found componenet type: {type.Name}");
+            Debug.WriteLine($"Found componenet type: {type.Name}");
             _constructors.Add(() => (Component)Activator.CreateInstance(type)!);
         }
 
@@ -33,7 +34,7 @@ public static class ComponentRegistry
 
         if (entry == null)
         {
-            Console.WriteLine($"Could not find entrypoint in {path}");
+            Debug.WriteLine($"Could not find entrypoint in {path}");
             return;
         }
 
