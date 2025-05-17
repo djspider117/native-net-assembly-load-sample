@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroEngineSDK", "sdk\Micro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game", "Game\Game.csproj", "{2C55DDEA-C0C1-4B0B-A1B4-57E111CEF133}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandboxSDKLoader", "SandboxSDKLoader\SandboxSDKLoader.csproj", "{B5FED621-9359-4883-B364-1C5B5B56B341}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{2C55DDEA-C0C1-4B0B-A1B4-57E111CEF133}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C55DDEA-C0C1-4B0B-A1B4-57E111CEF133}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C55DDEA-C0C1-4B0B-A1B4-57E111CEF133}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5FED621-9359-4883-B364-1C5B5B56B341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5FED621-9359-4883-B364-1C5B5B56B341}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5FED621-9359-4883-B364-1C5B5B56B341}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5FED621-9359-4883-B364-1C5B5B56B341}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
