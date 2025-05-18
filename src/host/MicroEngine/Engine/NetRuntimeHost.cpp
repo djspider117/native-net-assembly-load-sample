@@ -41,9 +41,9 @@ namespace MicroEngine
 		if (!LoadHostFXR())
 			return false;
 
-		path configPath(L"..\\..\\net9.0\\MicroEngineSDK.runtimeconfig.json");
+		path asPath = assemblyPath;
+		path configPath = asPath.parent_path() / ".runtimeconfig.json";
 
-		// temp hardcoded
 		auto loadDelegate = GetLoadAssemblyDelegate(configPath.c_str());
 		
 		auto hr = loadDelegate(

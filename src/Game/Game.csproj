@@ -6,6 +6,7 @@
 		<Nullable>enable</Nullable>
 		<OutputPath>..\host\MicroEngine\out\build</OutputPath>
 		<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	</PropertyGroup>
 
 	<ItemGroup>
